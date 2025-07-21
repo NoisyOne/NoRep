@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="rootContainer"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.client.controller.LoginController"
+            stylesheets="@/styles/Log.css">
+    <!-- 右上角自定义标题栏 -->
+    <top>
+        <HBox alignment="TOP_RIGHT" style="-fx-padding:10;">
+            <Button text="—" onAction="#minimizeWindow" styleClass="minimize-button" />
+            <Button text="╳" onAction="#closeWindow" styleClass="close-button" />
+        </HBox>
+    </top>
+    <!-- 外层容器用于整体圆角和背景遮罩 -->
+    <center>
+        <VBox spacing="15" alignment="CENTER" minWidth="300" maxWidth="300">
+            <padding>
+                <Insets top="40" bottom="40" left="40" right="40"/>
+            </padding>
+            <VBox spacing="15" alignment="CENTER" minWidth="300">
+                <Label fx:id="myName" text="NOCC" style="-fx-font-size: 40px;"/>
+
+                <TextField fx:id="phoneField" promptText="手机号"/>
+                <PasswordField fx:id="passwordField" promptText="密码"/>
+
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="登录" onAction="#handleLogin" styleClass="login-button"/>
+                    <Button text="注册" onAction="#handleRegister" styleClass="register-button"/>
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="10" padding="10">
+    <!-- 聊天标题 -->
+    <HBox>
+        <Label fx:id="chatTitle" text="与 [用户] 的聊天" style="-fx-font-size: 18px;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <!-- 消息历史 -->
+    <ScrollPane VBox.vgrow="ALWAYS">
+        <VBox fx:id="messageContainer" spacing="10" alignment="TOP_LEFT">
+            <!-- 动态加载消息 -->
+        </VBox>
+    </ScrollPane>
+
+    <!-- 输入框 -->
+    <HBox spacing="10">
+        <TextField fx:id="inputField" promptText="输入消息..." HBox.hgrow="ALWAYS"/>
+        <Button text="发送" prefWidth="80"/>
+    </HBox>
+</VBox>

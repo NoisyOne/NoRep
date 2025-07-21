@@ -1,0 +1,90 @@
+/* src/main/resources/styles/main.css */
+
+.root {
+    -fx-background: linear-gradient(to bottom right, #64b5f6, #f8f0f4,#e1f5fe);
+    -fx-font-family: "Microsoft YaHei", "Segoe UI", sans-serif; /* 圆体字体 */
+    -fx-padding: 20px;
+    -fx-border-radius: 20px; /* 界面四角圆滑 */
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0); /* 内阴影效果 */
+}
+
+.container {
+    -fx-padding: 20px;
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+}
+
+.avatar {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d1d1;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-min-width: 250px;
+    -fx-max-width: 300px; /* 不贴到界面两边 */
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+}
+
+.text-field:focus, .password-field:focus {
+    -fx-border-color: #1e90ff;
+    -fx-border-width: 2px;
+}
+
+.button {
+    -fx-background-color: #1e90ff;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #1c86ee;
+}
+
+.checkbox-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666;
+}
+
+.link-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e90ff;
+    -fx-padding: 5px 0;
+}
+
+.minimize-button {
+-fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.minimize-button:hover {
+-fx-background-color:rgba(0, 0, 0, 0.2);
+-fx-text-fill: black;
+-fx-font-weight: bold;
+}
+
+.close-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.close-button:hover {
+   -fx-background-color: red;
+   -fx-text-fill: #ffffff;
+   -fx-font-weight: bold;
+}
+
+#myName {
+-fx-text-fill:linear-gradient(to top right, #e1f5fe, #f8f0f4,#64b5f6);
+-fx-font-weight: bold;
+}

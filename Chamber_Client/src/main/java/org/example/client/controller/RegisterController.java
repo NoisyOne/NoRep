@@ -1,0 +1,72 @@
+package org.example.client.controller;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
+import org.example.client.App;
+import org.example.client.service.UserService;
+import org.example.client.service.NetworkService;
+
+public class RegisterController {
+    @FXML
+    private TextField phoneField;
+
+    @FXML
+    private PasswordField passwordField;
+
+    @FXML
+    private TextField nicknameField;
+
+    // 网络服务和用户服务
+    private NetworkService networkService;
+    private UserService userService;
+
+
+    public RegisterController() {
+        try {
+            // 初始化网络服务和用户服务
+            networkService = new NetworkService(null); // 这里需要传递UserService，暂时用null
+            userService = new UserService(networkService);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void submitRegister(ActionEvent event) {
+        String phone = phoneField.getText();
+        String password = passwordField.getText();
+        String nickname = nicknameField.getText();
+
+        if (phone == null || phone.isEmpty() ||
+                password == null || password.isEmpty() ||
+                nickname == null || nickname.isEmpty()) {
+            // 显示错误消息
+            System.out.println("所有字段都是必填的");
+            return;
+        }
+
+        // 执行注册
+        if (userService.register(phone, password, nickname)) {
+            // 注册成功，跳转到登录界面
+            try {
+                App.openLogin();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            // 显示注册失败消息
+            System.out.println("注册失败，请重试");
+        }
+    }
+
+
+    public void backToLogin(ActionEvent event) {
+        try {
+            App.openLogin();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

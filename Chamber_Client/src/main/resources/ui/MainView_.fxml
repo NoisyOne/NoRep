@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:controller="org.example.client.controller.MainViewController"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@/styles/Main.css"
+maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="802.0">
+   <children>
+      <Pane fx:id="leftPanel" prefHeight="607.0" prefWidth="98.0">
+         <children>
+            <Pane fx:id="avatarContainer" layoutX="5.0" layoutY="14.0" prefWidth="89.0" prefHeight="85.0">
+            <ImageView fx:id="avatarFrame" fitHeight="85.0" fitWidth="89.0" layoutX="5.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            </Pane>
+            <Button fx:id="contactor" alignment="TOP_CENTER" ellipsisString="📇" layoutX="15.0" layoutY="198.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="69.0" text="📇">
+               <font>
+                  <Font size="29.0" />
+               </font></Button>
+            <Button fx:id="message" ellipsisString="💬" layoutX="15.0" layoutY="122.0" mnemonicParsing="false" text="💬">
+               <font>
+                  <Font size="29.0" />
+               </font></Button>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="centerScrollPane" layoutX="98.0" prefHeight="607.0" prefWidth="146.0" />
+      <Pane fx:id="rightBottomPanel" layoutX="244.0" layoutY="407.0" prefHeight="45.0" prefWidth="558.0">
+         <children>
+            <Button fx:id="emojisButton" ellipsisString="😄" layoutX="7.0" layoutY="3.0" mnemonicParsing="false" prefHeight="6.0" prefWidth="31.0" text="😄">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
+            <Button fx:id="pictureButton" ellipsisString="🖼" layoutX="65.0" layoutY="3.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="10.0" text="🖼">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
+            <Button fx:id="voiceButton" ellipsisString="📞" layoutX="120.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="0.0" text="📞">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
+            <Button fx:id="videoButton" ellipsisString="📹" layoutX="173.0" layoutY="3.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="12.0" text="📹">
+               <font>
+                  <Font size="19.0" />
+               </font></Button>
+         </children>
+      </Pane>
+      <Pane fx:id="titleBar" layoutX="244.0" prefHeight="45.0" prefWidth="558.0">
+         <children>
+            <Text layoutX="14.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="49.99999386072159" />
+            <Button fx:id="closeButton" ellipsisString="╳" layoutX="494.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="╳" />
+            <Button fx:id="minimizeButton" ellipsisString="—" layoutX="434.0" layoutY="8.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="—" />
+         </children>
+      </Pane>
+      <TextArea fx:id="textArea" layoutX="244.0" layoutY="452.0" prefHeight="104.0" prefWidth="558.0" />
+      <Button fx:id="sendButton" layoutX="738.0" layoutY="563.0" mnemonicParsing="false" text="发送" />
+      <ScrollPane fx:id="chatFrame" layoutX="244.0" layoutY="45.0" prefHeight="359.0" prefWidth="558.0" />
+   </children>
+</AnchorPane>

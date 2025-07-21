@@ -1,0 +1,146 @@
+/* 设置整个 AnchorPane 的背景颜色 */
+AnchorPane {
+    -fx-background-color: linear-gradient(to right,
+            white 5%,
+            #f8f0f4 10%,
+            #e0f7ff 85%);
+}
+
+#leftPanel {
+    -fx-background-color: #009BFF;
+}
+
+#centerScrollPane .viewport {
+    -fx-background-color: #ffffff;
+}
+
+#titleBar {
+-fx-background-color: linear-gradient(to right,
+                                  #ffffff 5%,
+                                  #f8f0f4 10%,
+                                  #e0f7ff 85%);
+}
+
+#chatFrame .viewport {
+    -fx-background-color: linear-gradient(to right,
+                                  #ffffff 5%,
+                                  #f8f0f4 10%,
+                                  #e0f7ff 85%);
+}
+
+#textArea .content {
+    -fx-background-color: linear-gradient(to right,
+        #ffffff 5%,
+        #f8f0f4 10%,
+        #e0f7ff 85%);
+}
+
+/* 最右边的区域底色渐变 (蓝白粉主色调为白色和蓝色，粉色为辅) */
+#rightBottomPanel {
+    -fx-background-color: linear-gradient(to right,
+        white 5%,
+        #f8f0f4 10%,
+        #e0f7ff 85%);
+}
+
+#sendButton {
+    -fx-background-color: #1e90ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#sendButton:hover {
+    -fx-background-color: #1c86ee;
+}
+
+#closeButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+#closeButton:hover {
+-fx-background-color: red;
+-fx-text-fill: #ffffff;
+-fx-font-weight: bold;
+}
+
+#minimizeButton {
+-fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+#minimizeButton:hover {
+-fx-background-color:rgba(0, 0, 0, 0.2);
+-fx-text-fill: black;
+-fx-font-weight: bold;
+}
+
+#emojisButton{
+-fx-background-color:transparent;
+}
+
+#emojisButton:hover{
+-fx-background-color:rgba(0, 0, 0, 0.1);
+}
+
+#pictureButton{
+-fx-background-color:transparent;
+}
+
+#pictureButton:hover{
+-fx-background-color:rgba(0, 0, 0, 0.1);
+}
+
+#voiceButton{
+-fx-background-color:transparent;
+}
+
+#voiceButton:hover{
+-fx-background-color:rgba(0, 0, 0, 0.1);
+}
+
+#videoButton{
+-fx-background-color:transparent;
+}
+
+#videoButton:hover{
+-fx-background-color:rgba(0, 0, 0, 0.1);
+}
+
+#message{
+-fx-background-color:transparent;
+-fx-text-fill:#ffffff;
+}
+
+#message:hover{
+-fx-text-fill:#ffffff;
+-fx-background-color:rgba(0, 0, 0, 0.1);
+}
+
+#contactor {
+-fx-background-color:transparent;
+-fx-text-fill:#ffffff;
+}
+
+#contactor:hover{
+-fx-text-fill:#ffffff;
+-fx-background-color:rgba(0, 0, 0, 0.1);
+}
+
+#avatarFrame {
+    -fx-background-color: transparent;
+}
+
+#avatarContainer {
+    -fx-background-color: white;
+}
+
+
+#hintTheme{
+-fx-text-fill:linear-gradient(to bottom left,
+                      #f8f0f4 10%,
+                      #b3f7ff 85%);
+}
+
