@@ -1,12 +1,15 @@
 package org.example.client.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 消息模型
  * 表示系统中的消息实体
  */
-public class Message {
+public class Message implements Serializable {
+    private static final long serialVersionUID = 1L; // 添加序列化版本号
+
     private String messageId;
     private String senderId;
     private String receiverId;

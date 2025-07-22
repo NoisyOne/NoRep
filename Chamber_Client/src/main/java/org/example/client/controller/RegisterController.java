@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import org.example.client.App;
 import org.example.client.service.UserService;
 import org.example.client.service.NetworkService;
+import org.example.common.constant.ProtocolConstant;
+import org.example.common.model.Message;
 
 public class RegisterController {
     @FXML

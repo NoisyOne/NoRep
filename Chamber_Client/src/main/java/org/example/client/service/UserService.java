@@ -1,9 +1,9 @@
 package org.example.client.service;
 
 import javafx.application.Platform;
-import org.example.client.constant.ProtocolConstant;
-import org.example.client.model.Message;
-import org.example.client.model.User;
+import org.example.common.constant.ProtocolConstant;
+import org.example.common.model.Message;
+import org.example.common.model.User;
 
 /**
  * 用户服务
@@ -40,7 +40,7 @@ public class UserService {
             // 登录成功，解析用户信息
             String[] userInfo = response.getContent().split(",");
             if (userInfo.length >= 2) {
-                currentUser = new User(userInfo[0], userInfo[1]);
+                currentUser = new User();
                 return true;
             }
         }
