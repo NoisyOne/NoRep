@@ -1,54 +1,107 @@
-// src/main/java/org/example/common/model/User.java
+// Chamber_Common/src/main/java/org/example/common/model/User.java
 package org.example.common.model;
-
-import org.example.common.constant.ProtocolConstant;
 
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * 用户模型（客户端和服务端共用）
- */
 public class User implements Serializable {
+    // 序列化ID，确保跨端兼容性
     private static final long serialVersionUID = 1L;
 
-    private String userId;       // 用户唯一ID
-    private String phone;        // 手机号（登录账号）
-    private String password;     // 密码（客户端传输时需加密）
-    private String nickname;     // 昵称
-    private String avatar;       // 头像URL
-    private int status;          // 状态（对应ProtocolConstant中的用户状态）
-    private Date createdAt;      // 创建时间
+    // 所有字段需与数据库列和UserRepository的操作对应
+    private String userId;
+    private String phone;
+    private String nickname;
+    private String avatar;
+    private String signature;
+    private Date lastLogin;
+    private boolean isOnline;
+    private int status; // 用于标记用户状态（如1=正常，0=禁用）
 
-    // 构造方法
-    public User(String phone, String password, String nickname) {
-        this.phone = phone;
-        this.password = password;
-        this.nickname = nickname;
-        this.status = ProtocolConstant.USER_STATUS_PENDING; // 默认待激活
-    }
-
+    // 无参构造函数（反序列化必需）
     public User() {}
 
-    // Getter和Setter
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    // 客户端登录/注册时常用的构造函数（最少参数）
+    public User(String userId, String nickname) {
+        this.userId = userId;
+        this.nickname = nickname;
+    }
 
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
+    // 完整构造函数（服务端数据库映射用）
+    public User(String userId, String phone, String nickname, String avatar,
+                String signature, Date lastLogin, boolean isOnline, int status) {
+        this.userId = userId;
+        this.phone = phone;
+        this.nickname = nickname;
+        this.avatar = avatar;
+        this.signature = signature;
+        this.lastLogin = lastLogin;
+        this.isOnline = isOnline;
+        this.status = status;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    // 所有字段的getter和setter（必须完整，否则序列化/反序列化失败）
+    public String getUserId() {
+        return userId;
+    }
 
-    public String getNickname() { return nickname; }
-    public void setNickname(String nickname) { this.nickname = nickname; }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-    public String getAvatar() { return avatar; }
-    public void setAvatar(String avatar) { this.avatar = avatar; }
+    public String getPhone() {
+        return phone;
+    }
 
-    public int getStatus() { return status; }
-    public void setStatus(int status) { this.status = status; }
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-    public Date getCreatedAt() { return createdAt; }
-    public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public boolean isOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(boolean online) {
+        isOnline = online;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

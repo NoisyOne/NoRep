@@ -1,6 +1,6 @@
 package org.example.server.service;
 
-import org.example.server.model.Message;
+import org.example.common.model.Message;
 import org.example.server.repository.MessageRepository;
 
 import java.util.List;

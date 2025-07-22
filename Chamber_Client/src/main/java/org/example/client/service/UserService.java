@@ -75,7 +75,7 @@ public class UserService {
             // 解析用户信息
             String[] userInfo = message.getContent().split(",");
             if (userInfo.length >= 2) {
-                currentUser = new User(userInfo[0], userInfo[1]);
+                currentUser = new User();
 
                 // 跳转到主界面
                 try {

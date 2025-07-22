@@ -1,7 +1,7 @@
 package org.example.client.service;
 
-import org.example.client.constant.ProtocolConstant;
-import org.example.client.model.Message;
+import org.example.common.constant.ProtocolConstant;
+import org.example.common.model.Message;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class NetworkService {
     private static final Logger LOGGER = Logger.getLogger(NetworkService.class.getName());
 
-    private static final String SERVER_HOST = "106.14.167.110";
+    private static final String SERVER_HOST = "localhost";
     private static final int SERVER_PORT = 8080;
 
     private final Socket socket;

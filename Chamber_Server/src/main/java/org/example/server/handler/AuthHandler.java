@@ -1,10 +1,11 @@
 package org.example.server.handler;
 
-import org.example.server.constant.ProtocolConstant;
-import org.example.server.model.Message;
+import org.example.common.constant.ProtocolConstant;
+import org.example.common.model.Message;
 import org.example.server.cache.UserCache;
 import org.example.server.service.UserService;
-import org.example.server.model.User;
+import org.example.common.model.User;
+
 
 import java.io.IOException;
 import java.util.logging.Logger;

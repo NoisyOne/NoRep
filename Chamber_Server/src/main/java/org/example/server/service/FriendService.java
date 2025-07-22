@@ -1,6 +1,6 @@
 package org.example.server.service;
 
-import org.example.server.model.Friend;
+import org.example.common.model.Friend;
 import org.example.server.repository.FriendRepository;
 
 import java.util.List;

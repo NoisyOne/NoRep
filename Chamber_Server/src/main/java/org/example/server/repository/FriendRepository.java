@@ -1,6 +1,6 @@
 package org.example.server.repository;
 
-import org.example.server.model.Friend;
+import org.example.common.model.Friend;
 import org.example.server.util.DatabaseUtil;
 
 import java.sql.*;

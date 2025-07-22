@@ -1,8 +1,8 @@
 package org.example.server.handler;
 
-import org.example.server.model.Message;
+import org.example.common.model.Message;
 import org.example.server.cache.UserCache;
-import org.example.server.constant.ProtocolConstant;
+import org.example.common.constant.ProtocolConstant;
 
 import java.util.logging.Logger;
 

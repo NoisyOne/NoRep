@@ -7,10 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.example.client.App;
-import org.example.client.model.User;
+import org.example.common.model.User;
 import org.example.client.service.UserService;
 import org.example.client.service.NetworkService;
-import org.example.client.constant.ProtocolConstant;
 
 import java.io.IOException;
 

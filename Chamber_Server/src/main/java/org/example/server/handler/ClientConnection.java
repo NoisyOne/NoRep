@@ -3,7 +3,7 @@ package org.example.server.handler;
 import java.io.*;
 import java.net.Socket;
 import java.util.logging.Logger;
-import org.example.server.model.Message;
+import org.example.common.model.Message;
 
 /**
  * 客户端连接管理类

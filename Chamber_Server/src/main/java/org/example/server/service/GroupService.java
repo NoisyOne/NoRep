@@ -1,6 +1,6 @@
 package org.example.server.service;
 
-import org.example.server.model.Group;
+import org.example.common.model.Group;
 import org.example.server.repository.GroupRepository;
 
 import java.util.List;

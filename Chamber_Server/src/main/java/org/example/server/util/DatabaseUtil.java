@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class DatabaseUtil {
     // 数据库连接配置
-    private static final String URL = "jdbc:mysql://106.14.167.110:3306/chamber_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    private static final String URL = "jdbc:mysql://localhost:3306/chamberdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USER = "root";
     private static final String PASSWORD = "sfsgegdd123";
     private static final String DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";

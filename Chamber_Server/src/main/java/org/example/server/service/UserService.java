@@ -1,7 +1,7 @@
 package org.example.server.service;
 
 import org.example.server.repository.UserRepository;
-import org.example.server.model.User;
+import org.example.common.model.User;
 
 /**
  * 用户服务

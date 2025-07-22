@@ -1,6 +1,6 @@
 package org.example.server.cache;
 
-import org.example.server.model.User;
+import org.example.common.model.User;
 import org.example.server.handler.ClientConnection;
 
 import java.util.HashMap;
