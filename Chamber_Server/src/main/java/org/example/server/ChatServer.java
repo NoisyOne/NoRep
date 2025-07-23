@@ -22,15 +22,16 @@ public class ChatServer {
 
     private final ExecutorService threadPool;
     private final UserCache userCache;
-    private final UserService userService; // 改为实例变量，移除static
+    private final UserService userService;
     private volatile boolean isRunning = true; // 用于控制服务器运行状态
 
     public ChatServer() throws IOException {
-        UserRepository userRepository = new UserRepository(); // 假设 UserRepository 有无参构造函数
-        this.userService = new UserService(userRepository);
-        // 在构造函数中初始化UserService
+        UserRepository userRepository = new UserRepository();
+        this.userService = new UserService(userRepository); // 赋值给成员变量
         this.threadPool = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
-        this.userCache = UserCache.getInstance();
+        this.userCache = new UserCache(this.userService);
+
+        LOGGER.info("Chat server started on port " + PORT);
 
         // 初始化数据库连接
         DatabaseUtil.init();

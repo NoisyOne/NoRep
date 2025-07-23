@@ -29,6 +29,7 @@ public class AuthHandler {
      * 处理登录请求
      */
     public boolean handleLogin(Message loginMessage, ClientConnection connection) throws IOException {
+        LOGGER.info("Received login request from client. Raw content: {}");
         // 解析登录信息（JSON格式示例：{"phone":"1234567890","password":"xxxx"}
         String[] credentials = parseCredentials(loginMessage.getContent());
 

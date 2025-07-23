@@ -2,26 +2,25 @@ package org.example.server.cache;
 
 import org.example.common.model.User;
 import org.example.server.handler.ClientConnection;
+import org.example.server.service.UserService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class UserCache {
-    // 单例实例
-    private static final UserCache INSTANCE = new UserCache();
-
-    // 在线用户缓存：userId -> User
+    private static final Logger LOGGER = Logger.getLogger(UserCache.class.getName()); // 初始化日志
+    private final UserService userService;
     private final Map<String, User> onlineUsers = new ConcurrentHashMap<>();
-    // 用户Socket连接缓存：userId -> Socket连接
     private final Map<String, ClientConnection> connections = new ConcurrentHashMap<>();
 
-    private UserCache() {
-        // 私有构造函数
-    }
-
-    public static UserCache getInstance() {
-        return INSTANCE;
+    // 构造函数注入 UserService
+    public UserCache(UserService userService) {
+        this.userService = userService;
     }
 
     /**
@@ -80,18 +79,32 @@ public class UserCache {
      * 更新数据库中的在线状态
      */
     private void updateUserOnlineStatusInDB(String userId, boolean isOnline) {
-        // 这里应该调用UserRepository来更新数据库中的在线状态
-        // 示例代码，实际应通过服务层更新
-        System.out.println("User " + userId + " is now " + (isOnline ? "online" : "offline"));
+        // 区分登录（true）和登出（false）操作
+        boolean result = userService.updateOnlineStatus(userId, isOnline, isOnline);
+
+        if (result) {
+            if (isOnline) {
+                LOGGER.info("用户 " + userId + " 登录成功，在线状态已更新");
+            } else {
+                LOGGER.info("用户 " + userId + " 已下线，在线状态已更新");
+            }
+        } else {
+            LOGGER.warning("用户 " + userId + " 在线状态更新失败");
+        }
     }
 
     /**
      * 加载已存在的在线用户状态
      */
     public void loadOnlineUsers() {
-        // 从数据库加载当前在线用户
-        // 实际实现应查询数据库中is_online = true的用户
         System.out.println("Loading online users from database...");
+        // 调用 UserService 获取所有在线用户（需在 UserService 中添加对应方法）
+        List<User> onlineUsers = userService.getOnlineUsers();
+        for (User user : onlineUsers) {
+            // 注意：此时无客户端连接，仅加载用户信息到 onlineUsers 缓存（连接为 null）
+            this.onlineUsers.put(user.getUserId(), user);
+            // 连接信息可暂不加载，因为用户实际连接会在登录时更新
+        }
     }
 
     public void clearAllUsers() {

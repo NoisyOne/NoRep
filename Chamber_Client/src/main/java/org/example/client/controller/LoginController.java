@@ -32,7 +32,8 @@ public class LoginController {
     public LoginController() {
         try {
             // 初始化网络服务和用户服务
-            networkService = new NetworkService(null); // 这里需要传递UserService，暂时用null
+            networkService = new NetworkService(null);
+            networkService = new NetworkService(userService); // 这里需要传递UserService，暂时用null
             userService = new UserService(networkService);
         } catch (IOException e) {
             e.printStackTrace();

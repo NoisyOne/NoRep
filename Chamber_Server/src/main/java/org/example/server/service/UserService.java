@@ -3,6 +3,8 @@ package org.example.server.service;
 import org.example.server.repository.UserRepository;
 import org.example.common.model.User;
 
+import java.util.List;
+
 /**
  * 用户服务
  * 处理与用户相关的业务逻辑
@@ -35,6 +37,17 @@ public class UserService {
      */
     public User getUserById(String userId) {
         return userRepository.getUserById(userId);
+    }
+
+    /**
+     * 更新用户状态
+     */
+    public boolean updateOnlineStatus(String userId, boolean isOnline, boolean isLogin) {
+        return userRepository.updateOnlineStatus(userId, isOnline, isLogin);
+    }
+
+    public List<User> getOnlineUsers() {
+        return userRepository.getOnlineUsers();
     }
 
     /**

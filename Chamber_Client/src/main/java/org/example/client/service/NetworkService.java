@@ -29,6 +29,7 @@ public class NetworkService {
     public NetworkService(UserService userService) throws IOException {
         this.userService = userService;
         this.socket = new Socket(SERVER_HOST, SERVER_PORT);
+        LOGGER.info("成功连接到服务器: " + SERVER_HOST + ":" + SERVER_PORT);
         this.output = new ObjectOutputStream(socket.getOutputStream());
         this.input = new ObjectInputStream(socket.getInputStream());
         this.messageReceiver = new MessageReceiver(input, responseQueue, userService);
@@ -45,9 +46,16 @@ public class NetworkService {
             // 发送消息
             output.writeObject(message);
             output.flush();
+            LOGGER.info("已发送消息: " + message);
 
             // 等待响应（设置超时时间）
-            return responseQueue.poll(30, java.util.concurrent.TimeUnit.SECONDS);
+            Message response = responseQueue.poll(30, java.util.concurrent.TimeUnit.SECONDS);
+            if (response != null) {
+                LOGGER.info("收到响应: " + response); // 添加调试日志
+            } else {
+                LOGGER.warning("等待响应超时");
+            }
+            return response;
         } catch (IOException | InterruptedException e) {
             LOGGER.severe("Error sending message: " + e.getMessage());
             return null;
@@ -136,10 +144,12 @@ public class NetworkService {
          * 处理收到的消息
          */
         private void handleMessage(Message message) {
+            LOGGER.info("收到响应类型: " + message.getType() + ", 预期成功类型: " + ProtocolConstant.LOGIN_SUCCESS);
             // 处理通用消息
             switch (message.getType()) {
                 case ProtocolConstant.LOGIN_SUCCESS:
                     handleLoginSuccess(message);
+                    responseQueue.offer(message);
                     break;
                 case ProtocolConstant.LOGIN_FAILURE:
                     handleLoginFailure(message);
@@ -152,8 +162,7 @@ public class NetworkService {
                     break;
                 // 其他消息类型处理...
                 default:
-                    // 将响应放入队列
-                    responseQueue.offer(message);
+                    LOGGER.info("收到非响应消息，类型：" + message.getType());
             }
         }
 

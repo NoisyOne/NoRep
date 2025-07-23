@@ -1,9 +1,12 @@
 package org.example.client.service;
 
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import org.example.common.constant.ProtocolConstant;
 import org.example.common.model.Message;
 import org.example.common.model.User;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 /**
  * 用户服务
@@ -35,16 +38,12 @@ public class UserService {
 
         // 发送登录请求
         Message response = networkService.sendMessageAndWaitResponse(loginMessage);
-
+        LOGGER.info("登录响应详情: " + (response != null ?
+                "类型=" + response.getType() + ", 内容=" + response.getContent() : "无响应"));
         if (response != null && response.getType() == ProtocolConstant.LOGIN_SUCCESS) {
-            // 登录成功，解析用户信息
-            String[] userInfo = response.getContent().split(",");
-            if (userInfo.length >= 2) {
                 currentUser = new User();
                 return true;
-            }
         }
-
         return false;
     }
 
@@ -59,10 +58,12 @@ public class UserService {
                 ProtocolConstant.REGISTER_REQUEST,
                 String.format("%s,%s,%s", phone, password, nickname)
         );
-
+        LOGGER.info("准备发送注册请求: " + registerMessage);
         // 发送注册请求
         Message response = networkService.sendMessageAndWaitResponse(registerMessage);
-
+        if (response != null) {
+            LOGGER.info("收到注册响应: " + response.getType() + " - " + response.getContent()); // 添加调试日志
+        }
         return response != null && response.getType() == ProtocolConstant.REGISTER_SUCCESS;
     }
 
@@ -107,6 +108,7 @@ public class UserService {
         Platform.runLater(() -> {
             // 显示注册成功消息
             System.out.println("注册成功: " + message.getContent());
+
             // 跳转到登录界面
             try {
                 org.example.client.App.openLogin();

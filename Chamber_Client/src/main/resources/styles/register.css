@@ -25,8 +25,7 @@
 .text-field, .password-field {
     -fx-background-color: #ffffff;
     -fx-border-color: #d1d1d1;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 10px;
     -fx-padding: 10px 20px;
     -fx-font-size: 14px;
     -fx-min-width: 250px;

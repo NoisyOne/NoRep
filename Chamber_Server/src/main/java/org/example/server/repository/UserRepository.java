@@ -3,10 +3,9 @@ package org.example.server.repository;
 import org.example.common.model.User;
 import org.example.server.util.DatabaseUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -120,6 +119,25 @@ public class UserRepository {
         }
     }
 
+    public boolean updateOnlineStatus(String userId, boolean isOnline, boolean isLogin) {
+        String sql = "UPDATE app_users SET is_online = ?, last_login = ? WHERE user_id = ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setBoolean(1, isOnline);
+            // 登录时更新最后登录时间，登出时不更新
+            pstmt.setTimestamp(2, isLogin ? new Timestamp(System.currentTimeMillis()) : null);
+            pstmt.setString(3, userId);
+
+            int affectedRows = pstmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            LOGGER.severe("Database error updating online status: " + e.getMessage());
+            return false;
+        }
+    }
+
     /**
      * 生成唯一的用户ID
      */
@@ -128,4 +146,31 @@ public class UserRepository {
         return "U" + System.currentTimeMillis();
     }
 
+    public List<User> getOnlineUsers() {
+        String sql = "SELECT user_id, phone, nickname, avatar, signature, last_login, is_online " +
+                "FROM app_users WHERE is_online = true";
+
+        List<User> onlineUsers = new ArrayList<>();  // 初始化空列表
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setUserId(rs.getString("user_id"));
+                user.setPhone(rs.getString("phone"));
+                user.setNickname(rs.getString("nickname"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setSignature(rs.getString("signature"));
+                user.setLastLogin(rs.getTimestamp("last_login"));
+                user.setOnline(rs.getBoolean("is_online"));
+                onlineUsers.add(user);
+            }
+        } catch (SQLException e) {
+            LOGGER.severe("Database error fetching online users: " + e.getMessage());
+        }
+
+        return onlineUsers;  // 返回列表（可能为空但非null）
+    }
 }

@@ -10,6 +10,8 @@ import org.example.client.service.NetworkService;
 import org.example.common.constant.ProtocolConstant;
 import org.example.common.model.Message;
 
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+
 public class RegisterController {
     @FXML
     private TextField phoneField;
@@ -48,19 +50,9 @@ public class RegisterController {
             System.out.println("所有字段都是必填的");
             return;
         }
-
+        LOGGER.info("开始注册: phone=" + phone + ", nickname=" + nickname);
         // 执行注册
-        if (userService.register(phone, password, nickname)) {
-            // 注册成功，跳转到登录界面
-            try {
-                App.openLogin();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            // 显示注册失败消息
-            System.out.println("注册失败，请重试");
-        }
+        userService.register(phone, password, nickname);
     }
 
 
